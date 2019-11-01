@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CB HackerNews</string>
+
+    <string name="top_fragment">Top</string>
+    <string name="new_fragment">New</string>
+    <string name="best_fragment">Best</string>
+</resources>
