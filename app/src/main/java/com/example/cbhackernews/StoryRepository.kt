@@ -1,5 +1,6 @@
 package com.example.cbhackernews
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.cbhackernews.model.Story
@@ -13,7 +14,7 @@ import retrofit2.create
 class StoryRepository {
     var storyDataMutableList : MutableLiveData<ArrayList<Story>> = MutableLiveData();
     var storyDataList : ArrayList<Story> = ArrayList()
-    var storyList : MutableLiveData<ArrayList<Int>> = MutableLiveData();
+    var storyList : ArrayList<Int> = ArrayList();
 
     var client: StoryAPI = RetrofitClient.getRetrofitInstance().create()
 
@@ -21,10 +22,12 @@ class StoryRepository {
 
     suspend fun getTopStoryList() : MutableLiveData<ArrayList<Story>> {
 
-        for (id in client.getTopStories().listStoryId)
-            storyDataList.add(client.getStory(id))
-
-         storyDataMutableList.value = storyDataList
+        storyList = client.getTopStories()
+        for (i in 0..14) {
+            Log.e("TAG", "id = "+storyList.get(i))
+            storyDataList.add(client.getStory(storyList.get(i)))
+        }
+         storyDataMutableList.postValue(storyDataList)
 
         return storyDataMutableList
     }

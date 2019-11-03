@@ -1,7 +1,7 @@
 package com.example.cbhackernews.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.livedata
+import androidx.lifecycle.liveData
 import com.example.cbhackernews.StoryRepository
 import kotlinx.coroutines.Dispatchers
 

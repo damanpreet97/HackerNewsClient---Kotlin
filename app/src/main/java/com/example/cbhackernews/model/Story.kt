@@ -1,7 +1,10 @@
 package com.example.cbhackernews.model
 
 data class Story(
-    val id: Int = 0,
-    val title: String = "",
-    val completed: Boolean = false
+
+    val id: Int,
+    val title: String,
+    val score: Int,
+    val time: Int
+
 )
