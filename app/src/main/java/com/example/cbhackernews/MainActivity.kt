@@ -3,6 +3,7 @@ package com.example.cbhackernews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
+import com.example.cbhackernews.data.db.StoryDatabase
 import com.example.cbhackernews.view.MyAdapter
 import com.google.android.material.tabs.TabLayout
 
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         viewPager = findViewById<ViewPager>(R.id.viewPager)
 

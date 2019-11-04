@@ -1,4 +1,4 @@
-package com.example.cbhackernews.model
+package com.example.cbhackernews.data.model
 
 data class StoryListApiResponse (
 

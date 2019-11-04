@@ -1,14 +1,9 @@
 package com.example.cbhackernews.view
 
-import android.graphics.Movie
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cbhackernews.R
-import com.example.cbhackernews.model.Story
-import java.text.DateFormat
-import java.text.SimpleDateFormat
+import com.example.cbhackernews.data.model.Story
 import java.util.*
 
 class StoryAdapter(private val list: ArrayList<Story>)

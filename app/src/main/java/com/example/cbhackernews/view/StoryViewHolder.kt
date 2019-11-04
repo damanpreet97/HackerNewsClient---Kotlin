@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cbhackernews.R
-import com.example.cbhackernews.model.Story
+import com.example.cbhackernews.data.model.Story
 import java.text.SimpleDateFormat
 
 

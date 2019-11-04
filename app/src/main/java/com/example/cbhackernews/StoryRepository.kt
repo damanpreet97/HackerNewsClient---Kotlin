@@ -1,15 +1,15 @@
 package com.example.cbhackernews
 
 import android.util.Log
-import androidx.lifecycle.LiveData
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.example.cbhackernews.model.Story
-import com.example.cbhackernews.model.StoryListApiResponse
+import com.example.cbhackernews.data.model.Story
 import com.example.cbhackernews.network.RetrofitClient
 import com.example.cbhackernews.network.StoryAPI
-import io.reactivex.Scheduler
-import retrofit2.Callback
+import com.example.cbhackernews.utils.NoConnectivityException
 import retrofit2.create
+import java.io.IOException
+import kotlin.coroutines.coroutineContext
 
 class StoryRepository {
     var storyDataMutableList : MutableLiveData<ArrayList<Story>> = MutableLiveData();
@@ -22,16 +22,16 @@ class StoryRepository {
 
     suspend fun getTopStoryList() : MutableLiveData<ArrayList<Story>> {
 
-        storyList = client.getTopStories()
-        for (i in 0..14) {
-            Log.e("TAG", "id = "+storyList.get(i))
-            storyDataList.add(client.getStory(storyList.get(i)))
-        }
-         storyDataMutableList.postValue(storyDataList)
+            storyList = client.getTopStories()
+            for (i in 0..14) {
+                Log.e("TAG", "id = " + storyList.get(i))
+                storyDataList.add(client.getStory(storyList.get(i)))
+            }
+            storyDataMutableList.postValue(storyDataList)
 
-        return storyDataMutableList
+            return storyDataMutableList
+
     }
-
 
 //    fun getTopStoryList(): MutableLiveData<StoryListApiResponse> {
 //        val liveData = MutableLiveData<StoryListApiResponse>()
