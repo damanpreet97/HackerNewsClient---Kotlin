@@ -1,30 +1,30 @@
 package com.example.cbhackernews.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.example.cbhackernews.MyApplication
-import com.example.cbhackernews.MyApplication.Companion.storyDatabase
-import com.example.cbhackernews.StoryRepository
+import com.example.cbhackernews.data.StoryRepository
+import com.example.cbhackernews.data.db.BestStoryEntity
+import com.example.cbhackernews.data.db.NewStoryEntity
 import com.example.cbhackernews.data.db.StoryDatabase
 import com.example.cbhackernews.data.db.TopStoryEntity
-import com.example.cbhackernews.data.model.Story
 import kotlinx.coroutines.Dispatchers
 
 class StoryViewModel : ViewModel() {
 
      val storyDatabase : StoryDatabase = MyApplication.getDatabase()
-//    MyAppplcation.storyDatabase.getTopStoryDao().getTopStoryList().observe(this)
-    val storyRepository: StoryRepository = StoryRepository()
+     val storyRepository: StoryRepository = StoryRepository()
+
+//    lateinit var newStoriesDb : List<NewStoryEntity>
+//    lateinit var bestStoriesDb : List<BestStoryEntity>
+//     var topStoriesDb : List<TopStoryEntity>? = null
 //
-//    val topStoryList = liveData(Dispatchers.IO) {
-//        val retrievedStories = storyRepository.getTopStoryList()
-//        emit(retrievedStories)
+//    suspend fun getTopStoryListFromDb() = topStoriesDb ? : {
+//            storyDatabase.getTopStoryDao().getTopStoryList().also {
+//                topStoriesDb = it
+//            }
 //    }
 
-//    val topStoryListFromDb = liveData(Dispatchers.IO){
-//        emit(storyDatabase.getTopStoryDao().getTopStoryList())
-//    }
 
     suspend fun getTopStoryListFromDb() : List<TopStoryEntity>{
         return storyDatabase.getTopStoryDao().getTopStoryList()
@@ -36,6 +36,32 @@ class StoryViewModel : ViewModel() {
 
     val topStoryDataList = liveData(Dispatchers.IO) {
         val retrievedStoriesDataList = storyRepository.getTopStoryList()
+        emit(retrievedStoriesDataList)
+    }
+
+    suspend fun getNewStoryListFromDb() : List<NewStoryEntity>{
+        return storyDatabase.getNewStoryDao().getNewStoryList()
+    }
+
+    fun addNewStoriesToDb(newStoryList:  List<NewStoryEntity>) {
+        storyDatabase.getNewStoryDao().insertAllNewSTories(newStoryList)
+    }
+
+    val newStoryDataList = liveData(Dispatchers.IO) {
+        val retrievedStoriesDataList = storyRepository.getNewStoryList()
+        emit(retrievedStoriesDataList)
+    }
+
+    suspend fun getBestStoryListFromDb() : List<BestStoryEntity>{
+        return storyDatabase.getBestStoryDao().getBestStoryList()
+    }
+
+    fun addBestStoriesToDb(bestStoryList:  List<BestStoryEntity>) {
+        storyDatabase.getBestStoryDao().insertAllBestStories(bestStoryList)
+    }
+
+    val bestStoryDataList = liveData(Dispatchers.IO) {
+        val retrievedStoriesDataList = storyRepository.getBestStoryList()
         emit(retrievedStoriesDataList)
     }
 

@@ -2,6 +2,7 @@ package com.example.cbhackernews
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import com.example.cbhackernews.data.db.StoryDatabase
 
 //class MyApplication : Application(){
@@ -42,15 +43,18 @@ class MyApplication : Application() {
     companion object {
         private var instance: MyApplication? = null
 
-        fun applicationContext() : MyApplication {
+        private fun applicationContext() : MyApplication {
             return instance as MyApplication
         }
 
 //        val storyDatabase = StoryDatabase.invoke(context = applicationContext())!!
         var storyDatabase : StoryDatabase? = null
         fun getDatabase() : StoryDatabase{
-            if(storyDatabase == null)
+            Log.e("TAG", "getDatabse() called")
+            if(storyDatabase == null){
+                Log.e("TAG", "invoking StoryDatabase()")
             storyDatabase = StoryDatabase.invoke(context = applicationContext())!!
+            }
             return storyDatabase as StoryDatabase
         }
     }

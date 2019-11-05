@@ -1,11 +1,14 @@
-package com.example.cbhackernews.view
+package com.example.cbhackernews.view.adapter
 
 import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.cbhackernews.view.fragment.BestStoryFragment
+import com.example.cbhackernews.view.fragment.NewStoryFragment
+import com.example.cbhackernews.view.fragment.TopStoryFragment
 
-class MyAdapter(private val myContext: Context, fm: FragmentManager, internal var totalTabs: Int) : FragmentPagerAdapter(fm) {
+class MyPagerAdapter(private val myContext: Context, fm: FragmentManager, internal var totalTabs: Int) : FragmentPagerAdapter(fm) {
 
 
 
@@ -14,16 +17,15 @@ class MyAdapter(private val myContext: Context, fm: FragmentManager, internal va
         when (position) {
             0 -> {
                 //  val homeFragment: HomeFragment = HomeFragment()
-                return TopStoryFragment()
+                return TopStoryFragment.getInstance()
             }
             1 -> {
-                return NewStoryFragment()
+                return NewStoryFragment.getInstance()
             }
             2 -> {
-                // val movieFragment = MovieFragment()
-                return BestStoryFragment()
+                return BestStoryFragment.getInstance()
             }
-            else -> return TopStoryFragment()
+            else -> return BestStoryFragment.getInstance()
         }
     }
 

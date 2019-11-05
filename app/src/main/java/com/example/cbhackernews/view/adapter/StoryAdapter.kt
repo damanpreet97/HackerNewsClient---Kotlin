@@ -1,9 +1,10 @@
-package com.example.cbhackernews.view
+package com.example.cbhackernews.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cbhackernews.data.model.Story
+import com.example.cbhackernews.view.StoryViewHolder
 import java.util.*
 
 class StoryAdapter(private val list: ArrayList<Story>)

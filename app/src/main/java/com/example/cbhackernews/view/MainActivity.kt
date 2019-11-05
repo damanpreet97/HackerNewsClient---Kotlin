@@ -1,10 +1,10 @@
-package com.example.cbhackernews
+package com.example.cbhackernews.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
-import com.example.cbhackernews.data.db.StoryDatabase
-import com.example.cbhackernews.view.MyAdapter
+import com.example.cbhackernews.R
+import com.example.cbhackernews.view.adapter.MyPagerAdapter
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
@@ -19,15 +19,12 @@ class MainActivity : AppCompatActivity() {
         tabLayout = findViewById<TabLayout>(R.id.tabLayout)
         viewPager = findViewById<ViewPager>(R.id.viewPager)
 
-
-//        tabLayout!!.addTab(tabLayout!!.newTab().setText("Home"))
-//        tabLayout!!.addTab(tabLayout!!.newTab().setText("Sport"))
-//        tabLayout!!.addTab(tabLayout!!.newTab().setText("Movie"))
         tabLayout!!.tabGravity = TabLayout.GRAVITY_FILL
 
-        val adapter = MyAdapter(this, supportFragmentManager, 3)
+        val adapter =
+            MyPagerAdapter(this, supportFragmentManager, 3)
         viewPager!!.adapter = adapter
-
+        viewPager!!.offscreenPageLimit = 2
         viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
 
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

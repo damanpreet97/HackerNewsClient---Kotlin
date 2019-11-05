@@ -10,10 +10,10 @@ import com.example.cbhackernews.data.model.Story
 
 @Dao
 interface BestStoryDao{
-    //this will insert & update according to whether entry is already present or not
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    fun insertAllBestStories(storyList : List<BestStoryEntity>)
+//    this will insert & update according to whether entry is already present or not
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllBestStories(storyList : List<BestStoryEntity>)
 
-//    @Query("select * from top_story_items")
-//    fun getBestStoryList() : LiveData<ArrayList<Story>>
+    @Query("select * from best_story_items")
+    suspend fun getBestStoryList() : List<BestStoryEntity>
 }

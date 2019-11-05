@@ -19,11 +19,11 @@ interface StoryAPI {
     @GET("topstories.json")
     suspend fun getTopStories(): ArrayList<Int>
 
-    @GET("beststories")
-    fun getBestStories(): Observable<List<Story>>
+    @GET("beststories.json")
+    suspend fun getBestStories(): ArrayList<Int>
 
-    @GET("newstories")
-    fun getNewStories(): Observable<List<Story>>
+    @GET("newstories.json")
+    suspend fun getNewStories(): ArrayList<Int>
 
     @GET("item/{id}.json")
     suspend fun getStory(@Path(value = "id") storyId: Int): Story
